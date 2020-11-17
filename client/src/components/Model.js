@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function Model(props) {
   
@@ -14,7 +15,7 @@ function Model(props) {
 
   
     if(props.status) {
-      if(props.id == 'feedbackmodel') {
+      if(props.id === 'feedbackmodel') {
       return (
       <div className="model">
       <div className="feedbackmodel">
@@ -44,12 +45,17 @@ function Model(props) {
   </div>
 </div>
   )
-      } else if (props.id == "Livingroom furnitures") {
+      } else  {
         return(
         <div className="model">
           <div className="items">
-            {props.furnitures.livingroom.map((furniture, index)=> (
-              <div><img key={index} src={furniture}/></div>
+          <p className="closebtn-items" onClick={closeModel}>X</p>
+            {props.items.map(item=> (
+              <div className="item-container" key={item._id}>
+                <div className="item-img-container"><img src={item.imageStrings[0]} alt={item.name}/></div>
+                <p className="item-name">{item.name}</p>
+                <p className="item-description">{item.description}</p>
+              </div>
             ))}
 
           </div>
@@ -61,5 +67,9 @@ function Model(props) {
 
 
 }
+const mapStateToProps = (state) => ({
+  items: state.item.item
+})
 
-export default Model;
+
+export default connect(mapStateToProps, {})(Model);

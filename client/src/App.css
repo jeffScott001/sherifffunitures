@@ -326,6 +326,105 @@
 .active {
   display: block;
 }
+
+/* Items container images */
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 20px auto;
+  position: relative;
+  border: solid 5px #008080;
+}
+.closebtn-items {
+  width: 30px;
+  height: 30px;
+  background-color: #ff2400;
+  text-align: center;
+  padding: 3px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  margin: -10px;
+}
+.closebtn-items:hover {
+  background-color: red;
+}
+.item-container {
+  margin: 5px;
+  background-color: #7f5217;
+  border-radius: 5px;
+  padding: 5px;
+}
+.item-img-container img {
+  width: 250px;
+  height: 200px;
+}
+.item-name {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  color: #333;
+  text-decoration: underline;
+}
+.item-description {
+  font-size: small;
+  color: #fff;
+}
+
+/* Upload Container */
+.upload-conatianer {
+  width: 60%;
+  margin: auto;
+}
+.upload-conatianer h1 {
+  text-align: center;
+  color: #d4d4d4;
+}
+.upload-body {
+  width: 60%;
+  background-color: #493d26;
+  margin: auto;
+  border-radius: 5px;
+}
+.upload-body form div {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.upload-body form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.upload-body form select {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.upload-body form textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+.upload-body form button {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  color: #d4d4d4;
+  background-color: #7f5217;
+  cursor: pointer;
+}
+.upload-body form button:hover {
+  background-color: #333;
+}
+
 /* animations */
 @keyframes continous {
   0% {
@@ -511,5 +610,12 @@
   }
   .fa-comments {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .upload-conatianer {
+    width: 100%;
+    margin: auto;
   }
 }

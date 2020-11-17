@@ -1,97 +1,28 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom'
 import Navigation from "./components/Navigation";
 import Body from "./components/Body";
 import Icons from "./components/Icons";
 import Contacts from "./components/Contacts";
 import Feedback from "./components/Feedback";
 import Model from './components/Model';
+import Upload from './components/Upload';
+
+
+
+
+import store from './store.js'
 
 
 class App extends Component {
   state = {
       id:"",
       classactive: false,
-      furnitures: {
-        livingroom: [
-          'https://imgur.com/ogYVAet',
-          'https://imgur.com/lTY3V7k',
-          'https://imgur.com/CWVNy20'
-        ],
-        Kitchen: [
-          'https://imgur.com/I4cCsXD',
-          'https://imgur.com/hl1TT2E',
-          'https://imgur.com/ogYVAet'
-        ],
-        Dinning: [
-          'https://imgur.com/E5RJfDX',
-          'https://imgur.com/ogYVAet',
-          'https://imgur.com/I4cCsXD'
-        ],
-        office: [
-          'https://imgur.com/lTY3V7k',
-          'https://imgur.com/lTY3V7k',
-          'https://imgur.com/CWVNy20'
-        ],
-        bedroom: [
-          'https://imgur.com/c5LHOX6',
-          'https://imgur.com/pxxMmGf',
-          'https://imgur.com/7ALELdT',
-          'https://imgur.com/KbnywOd',
-          'https://imgur.com/YJzeZLX',
-          'https://imgur.com/8de5O9B',
-          'https://imgur.com/y8drbje',
-          'https://imgur.com/jZyiPSb',
-          'https://imgur.com/jZyiPSb',
-          'https://imgur.com/HsXEkzi',
-          'https://imgur.com/74IlNcS',
-          'https://imgur.com/Y5RpIgP',
-          'https://imgur.com/fjvbLPM',
-          'https://imgur.com/7PD2y76',
-          'https://imgur.com/E5RJfDX',
-          'https://imgur.com/de2cOjf'
-        ],
-        fitting: {
-          livingroom: [
-             'https://imgur.com/ogYVAet',
-             'https://imgur.com/lTY3V7k',
-             'https://imgur.com/CWVNy20'
-          ],
-          Kitchen: [
-             'https://imgur.com/I4cCsXD',
-          'https://imgur.com/hl1TT2E',
-          'https://imgur.com/ogYVAet'
-          ],
-          Dinning: [
-             'https://imgur.com/E5RJfDX',
-          'https://imgur.com/ogYVAet',
-          'https://imgur.com/I4cCsXD'
-          ],
-          office: [
-             'https://imgur.com/lTY3V7k',
-          'https://imgur.com/lTY3V7k',
-          'https://imgur.com/CWVNy20'
-          ],
-          bedroom: [
-             'https://imgur.com/c5LHOX6',
-          'https://imgur.com/pxxMmGf',
-          'https://imgur.com/7ALELdT',
-          'https://imgur.com/KbnywOd',
-          'https://imgur.com/YJzeZLX',
-          'https://imgur.com/8de5O9B',
-          'https://imgur.com/y8drbje',
-          'https://imgur.com/jZyiPSb',
-          'https://imgur.com/jZyiPSb',
-            'https://imgur.com/HsXEkzi',
-            'https://imgur.com/74IlNcS',
-            'https://imgur.com/Y5RpIgP',
-            'https://imgur.com/fjvbLPM',
-            'https://imgur.com/7PD2y76',
-            'https://imgur.com/E5RJfDX',
-            'https://imgur.com/de2cOjf'
-          
-          ]
-  }}}
+    }
+
+  
 
 
   openModel = (id) => {
@@ -103,18 +34,23 @@ class App extends Component {
   }
   render(){
     return (
-      <div className="App">
-        <div className="cover">
-          <Navigation />
-          <Body showModel = {this.showModel} />
-          <Icons />
-          <Contacts />
-          <Feedback openModel = {this.openModel}/>      
-          {/* <div class="copyright">© 2020 Computer Hope</div> */}
-        </div>
-        <Model furnitures={this.state.furnitures} fitting={this.state.fitting} status={this.state.classactive} openModel={this.openModel} id={this.state.id} />
+      <BrowserRouter>
+        <Provider store={store}>
+          <div className="App">
+            <div className="cover">
+            <Route exact path="/"> <Navigation /> </Route>
+            <Route exact path="/"> <Body showModel = {this.showModel} /></Route>
+            <Route exact path="/"> <Icons /></Route>
+            <Route exact path="/"> <Contacts /></Route>
+            <Route exact path="/"> <Feedback openModel = {this.openModel}/> </Route>     
+              {/* <div class="copyright">© 2020 Computer Hope</div> */}
+            <Route exact path="/upload" component={Upload} />
 
-      </div>
+            </div>
+            <Route path="/"> <Model status={this.state.classactive} openModel={this.openModel} id={this.state.id} /></Route>
+          </div>
+        </Provider>
+      </BrowserRouter>
     );
   }
   
