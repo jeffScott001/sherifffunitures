@@ -15,8 +15,7 @@ class Upload extends Component {
 
     componentWillReceiveProps(prevprops){
         if(prevprops.item !== this.props.item) {
-            windows.location.reload()
-            
+            windows.location.reload() 
         }
         console.log(prevprops.item)
     }
