@@ -13,12 +13,7 @@ class Upload extends Component {
         description:''
      }
 
-    componentWillReceiveProps(prevprops){
-        if(prevprops.item !== this.props.item) {
-            windows.location.reload() 
-        }
-        console.log(prevprops.item)
-    }
+   
     onChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
